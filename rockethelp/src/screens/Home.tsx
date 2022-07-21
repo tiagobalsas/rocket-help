@@ -21,7 +21,14 @@ export function Home() {
   const [statusSelected, setStatusSelected] = useState<'open' | 'closed'>(
     'open'
   );
-  const [orders, setOrders] = useState<OrderProps[]>([]);
+  const [orders, setOrders] = useState<OrderProps[]>([
+    {
+      id: '1231',
+      patrimony: '123456',
+      when: '18/07/2022 às 10:00',
+      status: 'open',
+    },
+  ]);
   const { colors } = useTheme();
 
   const navigation = useNavigation();
@@ -29,6 +36,11 @@ export function Home() {
   function handleNewOrder() {
     navigation.navigate('new');
   }
+
+  function handleOpenDetails(orderId: string) {
+    navigation.navigate('details', { orderId });
+  }
+
   return (
     <VStack flex={1} pb={6} bg='gray.700'>
       <HStack
@@ -75,7 +87,9 @@ export function Home() {
         <FlatList
           data={orders}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Order data={item} />}
+          renderItem={({ item }) => (
+            <Order data={item} onPress={() => handleOpenDetails(item.id)} />
+          )}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 100 }}
           ListEmptyComponent={() => (
