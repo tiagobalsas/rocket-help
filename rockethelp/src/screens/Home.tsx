@@ -65,8 +65,8 @@ export function Home() {
           justifyContent='space-between'
           alignItems='center'
         >
-          <Heading color='gray.100'>Meus chamados</Heading>
-          <Text color='gray.200'>3</Text>
+          <Heading color='gray.100'>Minhas solicitações</Heading>
+          <Text color='gray.200'>{orders.length}</Text>
         </HStack>
 
         <HStack space={3} mb={8}>
