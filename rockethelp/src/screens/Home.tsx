@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import {
   Center,
   FlatList,
@@ -20,15 +21,14 @@ export function Home() {
   const [statusSelected, setStatusSelected] = useState<'open' | 'closed'>(
     'open'
   );
-  const [orders, setOrders] = useState<OrderProps[]>([
-    // {
-    //   id: '1231',
-    //   patrimony: '123456',
-    //   when: '18/07/2022 às 10:00',
-    //   status: 'open',
-    // },
-  ]);
+  const [orders, setOrders] = useState<OrderProps[]>([]);
   const { colors } = useTheme();
+
+  const navigation = useNavigation();
+
+  function handleNewOrder() {
+    navigation.navigate('new');
+  }
   return (
     <VStack flex={1} pb={6} bg='gray.700'>
       <HStack
@@ -88,7 +88,7 @@ export function Home() {
             </Center>
           )}
         />
-        <Button title='Nova solicitação' />
+        <Button title='Nova solicitação' onPress={handleNewOrder} />
       </VStack>
     </VStack>
   );
