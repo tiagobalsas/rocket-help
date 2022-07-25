@@ -21,6 +21,27 @@ export function Signin() {
     }
 
     setIsloading(true);
+
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        console.log(error);
+        setIsloading(false);
+
+        if (error.code === 'auth/invalid-email') {
+          return Alert.alert('Entrar', 'E-mail inválido.');
+        }
+
+        if (error.code === 'auth/user-not-found') {
+          return Alert.alert('Entrar', 'Usuário não cadastrado.');
+        }
+
+        if (error.code === 'auth/wrong-password') {
+          return Alert.alert('Entrar', 'E-mail ou senha inválida.');
+        }
+
+        return Alert.alert('Entrar', 'Não foi possível acessar');
+      });
   }
 
   return (
@@ -37,6 +58,10 @@ export function Signin() {
           <Icon as={<Envelope color={colors.gray[300]} />} ml={4} />
         }
         onChangeText={setEmail}
+        keyboardType='email-address'
+        autoCapitalize='none'
+        autoCorrect={false}
+        autoComplete='email'
       />
       <Input
         mb={8}
@@ -46,7 +71,12 @@ export function Signin() {
         onChangeText={setPassword}
       />
 
-      <Button title='Entrar' w='full' onPress={handleSignin} isLoading={isloading} />
+      <Button
+        title='Entrar'
+        w='full'
+        onPress={handleSignin}
+        isLoading={isloading}
+      />
     </VStack>
   );
 }
