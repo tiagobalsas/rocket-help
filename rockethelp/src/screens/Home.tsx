@@ -78,7 +78,7 @@ export function Home() {
       });
 
     return subscriber;
-  }, []);
+  }, [statusSelected]);
 
   return (
     <VStack flex={1} pb={6} bg='gray.700'>
