@@ -109,8 +109,8 @@ export function Details() {
 
   return (
     <VStack flex={1} bg='gray.700'>
-      <Box px={6} bg='gray.600' >
-      <Header title='Solicitação' />
+      <Box px={6} bg='gray.600'>
+        <Header title='Solicitação' />
       </Box>
       <HStack bg='gray.500' justifyContent='center' p={4}>
         {order.status === 'closed' ? (
@@ -137,12 +137,12 @@ export function Details() {
           title='equipament'
           description={`Patrimônio ${order.patrimony}`}
           icon={DesktopTower}
-          footer={order.when}
         />
         <CardDetails
           title='Descrição do problema'
           description={`${order.description}`}
           icon={Clipboard}
+          footer={order.when}
         />
         <CardDetails
           title='Solução'
