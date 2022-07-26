@@ -142,7 +142,7 @@ export function Details() {
           title='Descrição do problema'
           description={`${order.description}`}
           icon={Clipboard}
-          footer={order.when}
+          footer={`Registrado em ${order.when}`}
         />
         <CardDetails
           title='Solução'
